@@ -31,9 +31,16 @@ function icon(label, path) {
 
 function render() {
   const slug = slugFromLocation();
-  const contact = bySlug.get(slug) || (!slug ? CONTACTS[0] : null);
+  const isHome = !slug;
+  const contact = isHome ? null : bySlug.get(slug);
+  $('welcome').hidden = !isHome;
   $('contact-content').hidden = !contact;
-  $('not-found').hidden = Boolean(contact);
+  $('not-found').hidden = isHome || Boolean(contact);
+  if (isHome) {
+    $('employee').value = '';
+    document.title = 'Guthrie Center Digital Contact Cards';
+    return;
+  }
   if (!contact) return;
 
   $('name').textContent = contact.name;
@@ -75,13 +82,22 @@ async function share() {
   window.setTimeout(() => { button.textContent = 'Share'; }, 1600);
 }
 
+const promptOption = document.createElement('option');
+promptOption.value = '';
+promptOption.textContent = 'Select a staff member';
+promptOption.disabled = true;
+promptOption.selected = true;
+$('employee').appendChild(promptOption);
+
 for (const contact of CONTACTS) {
   const option = document.createElement('option');
   option.value = contact.slug;
   option.textContent = contact.name + (contact.credentials ? `, ${contact.credentials}` : '');
   $('employee').appendChild(option);
 }
-$('employee').addEventListener('change', (event) => { window.location.hash = `/${event.target.value}`; });
+$('employee').addEventListener('change', (event) => {
+  if (event.target.value) window.location.hash = `/${event.target.value}`;
+});
 
 $('share-contact').addEventListener('click', share);
 $('save-contact').addEventListener('click', saveContact);
