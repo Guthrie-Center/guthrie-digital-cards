@@ -52,6 +52,9 @@ function render() {
   $('email').textContent = contact.email;
   $('email-link').href = `mailto:${contact.email}`;
   $('save-contact').href = '#';
+  $('qr-name').textContent = contact.name;
+  $('qr-image').src = `assets/qr/${contact.slug}.png`;
+  $('qr-image').alt = `QR code for ${contact.name}'s digital contact card`;
   $('employee').value = contact.slug;
   document.title = `${contact.name} | Guthrie Center`;
 }
@@ -105,6 +108,11 @@ $('employee').addEventListener('change', (event) => {
 
 $('share-contact').addEventListener('click', share);
 $('save-contact').addEventListener('click', saveContact);
+$('show-qr').addEventListener('click', () => $('qr-dialog').showModal());
+$('qr-close').addEventListener('click', () => $('qr-dialog').close());
+$('qr-dialog').addEventListener('click', (event) => {
+  if (event.target === $('qr-dialog')) $('qr-dialog').close();
+});
 $('copy-link').addEventListener('click', async () => {
   await navigator.clipboard.writeText(window.location.href);
   $('copy-link').textContent = 'Link copied';
