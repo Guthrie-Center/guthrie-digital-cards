@@ -89,7 +89,11 @@ promptOption.disabled = true;
 promptOption.selected = true;
 $('employee').appendChild(promptOption);
 
-for (const contact of CONTACTS) {
+const contactsByFirstName = [...CONTACTS].sort((a, b) =>
+  a.name.localeCompare(b.name, 'en', { sensitivity: 'base' })
+);
+
+for (const contact of contactsByFirstName) {
   const option = document.createElement('option');
   option.value = contact.slug;
   option.textContent = contact.name + (contact.credentials ? `, ${contact.credentials}` : '');
