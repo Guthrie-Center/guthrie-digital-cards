@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#061f4d" />
+    <meta name="description" content="Save contact information for a Guthrie Center staff member." />
+    <title>Guthrie Center Digital Contact Card</title>
+    <link rel="icon" href="assets/favicon.svg" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="site-shell">
+      <section class="photo-panel" aria-label="Guthrie Center">
+        <div class="photo-shade"></div>
+        <div class="brand-lockup">
+          <img src="assets/guthrie-ambigram-white.png" alt="Guthrie" class="ambigram" />
+          <p>Excellence, Elevated.</p>
+        </div>
+      </section>
+
+      <section class="contact-panel">
+        <div class="proof-toolbar" id="proof-toolbar" hidden>
+          <label for="employee">Proof preview</label>
+          <select id="employee"></select>
+        </div>
+
+        <div class="contact-content" id="contact-content" aria-live="polite">
+          <p class="eyebrow">Spring Branch ISD · Guthrie Center</p>
+          <h1 id="name"></h1>
+          <p class="credentials" id="credentials" hidden></p>
+          <p class="title" id="title"></p>
+
+          <div class="primary-actions">
+            <a class="save-button" id="save-contact" download>Save contact</a>
+            <button type="button" class="share-button" id="share-contact">Share</button>
+          </div>
+
+          <address class="contact-list">
+            <a id="phone-link"><span class="icon-wrap" aria-hidden="true">☎</span><span><small>Phone</small><span id="phone"></span></span></a>
+            <a id="email-link"><span class="icon-wrap" aria-hidden="true">✉</span><span><small>Email</small><span id="email"></span></span></a>
+            <a href="https://maps.google.com/?q=10660+Hammerly+Blvd+Houston+TX+77043" target="_blank" rel="noreferrer"><span class="icon-wrap" aria-hidden="true">⌖</span><span><small>Guthrie Center</small>10660 Hammerly Blvd, Houston, TX 77043</span></a>
+            <a href="https://guthriecenter.springbranchisd.com" target="_blank" rel="noreferrer"><span class="icon-wrap" aria-hidden="true">↗</span><span><small>Website</small>Visit the Guthrie Center</span></a>
+          </address>
+
+          <button type="button" class="copy-link" id="copy-link">Copy this card’s link</button>
+        </div>
+
+        <div class="not-found" id="not-found" hidden>
+          <h1>Contact card not found</h1>
+          <p>Please rescan the QR code or request a current link from the Guthrie Center.</p>
+        </div>
+
+        <footer><span>Guthrie Center</span><span>Discover. Apply. Succeed.</span></footer>
+      </section>
+    </main>
+    <script src="contacts.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
