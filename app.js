@@ -75,17 +75,13 @@ async function share() {
   window.setTimeout(() => { button.textContent = 'Share'; }, 1600);
 }
 
-const proofMode = new URLSearchParams(window.location.search).get('proof') === '1';
-if (proofMode) {
-  $('proof-toolbar').hidden = false;
-  for (const contact of CONTACTS) {
-    const option = document.createElement('option');
-    option.value = contact.slug;
-    option.textContent = contact.name;
-    $('employee').appendChild(option);
-  }
-  $('employee').addEventListener('change', (event) => { window.location.hash = `/${event.target.value}`; });
+for (const contact of CONTACTS) {
+  const option = document.createElement('option');
+  option.value = contact.slug;
+  option.textContent = contact.name + (contact.credentials ? `, ${contact.credentials}` : '');
+  $('employee').appendChild(option);
 }
+$('employee').addEventListener('change', (event) => { window.location.hash = `/${event.target.value}`; });
 
 $('share-contact').addEventListener('click', share);
 $('save-contact').addEventListener('click', saveContact);
