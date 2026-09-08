@@ -53,7 +53,7 @@ function render() {
   $('email-link').href = `mailto:${contact.email}`;
   $('save-contact').href = '#';
   $('qr-name').textContent = contact.name;
-  $('qr-image').src = `assets/qr/${contact.slug}.png`;
+  $('qr-image').src = `assets/qr/${contact.slug}.png?v=2`;
   $('qr-image').alt = `QR code for ${contact.name}'s digital contact card`;
   $('employee').value = contact.slug;
   document.title = `${contact.name} | Guthrie Center`;
